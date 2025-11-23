@@ -248,28 +248,28 @@ jobs:
           
           # Create AppDir structure
           echo "Creating AppDir structure..."
-          mkdir -p ccloud.AppDir/usr/bin
-          cp -r build/linux/x64/release/bundle/* ccloud.AppDir/usr/bin/
+          mkdir -p ccloud_gui.AppDir/usr/bin
+          cp -r build/linux/x64/release/bundle/* ccloud_gui.AppDir/usr/bin/
           
           # Copy desktop file to AppDir
           echo "Copying desktop file..."
-          cp linux/runner/ccloud.desktop ccloud.AppDir/ccloud.desktop
+          cp linux/runner/ccloud.desktop ccloud_gui.AppDir/ccloud_gui.desktop
           
           # Copy icon to AppDir root with correct name
           echo "Copying icon..."
-          cp linux/assets/256x256.png ccloud.AppDir/ccloud.png
+          cp linux/assets/256x256.png ccloud_gui.AppDir/ccloud_gui.png
           
           # Make sure the executable is properly linked
-          chmod +x ccloud.AppDir/usr/bin/ccloud_gui
+          chmod +x ccloud_gui.AppDir/usr/bin/ccloud_gui
           
           # List files for debugging
           echo "AppDir contents:"
-          find ccloud.AppDir -type f
+          find ccloud_gui.AppDir -type f
           
           # Create AppImage
           echo "Creating AppImage..."
           OUTPUT=release/CCloud-$VERSION-linux.AppImage ./linuxdeploy-x86_64.AppImage \
-            --appdir ccloud.AppDir \
+            --appdir ccloud_gui.AppDir \
             --output appimage || {
             echo "AppImage creation failed, continuing with other packages"
             echo "Contents of release directory:"
