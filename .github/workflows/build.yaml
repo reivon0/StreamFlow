@@ -2,8 +2,6 @@ name: Build and Release
 
 on:
   push:
-    branches:
-      - master
     tags:
       - 'v*'
   workflow_dispatch:
@@ -18,7 +16,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        architecture: [x64]
+        architecture: [x64, x86]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -150,7 +148,7 @@ jobs:
       - name: Install Linux dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
+          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev desktop-file-utils libgdk-pixbuf2.0-dev
         shell: bash
 
       - name: Build Linux
@@ -180,6 +178,20 @@ jobs:
           
           # Copy application files
           cp -r build/linux/x64/release/bundle/* ccloud-package/usr/bin/
+          
+          # Copy desktop file
+          cp linux/runner/ccloud.desktop ccloud-package/usr/share/applications/
+          
+          # Copy icons
+          cp linux/assets/16x16.png ccloud-package/usr/share/icons/hicolor/16x16/apps/ccloud.png
+          cp linux/assets/22x22.png ccloud-package/usr/share/icons/hicolor/22x22/apps/ccloud.png
+          cp linux/assets/24x24.png ccloud-package/usr/share/icons/hicolor/24x24/apps/ccloud.png
+          cp linux/assets/32x32.png ccloud-package/usr/share/icons/hicolor/32x32/apps/ccloud.png
+          cp linux/assets/48x48.png ccloud-package/usr/share/icons/hicolor/48x48/apps/ccloud.png
+          cp linux/assets/64x64.png ccloud-package/usr/share/icons/hicolor/64x64/apps/ccloud.png
+          cp linux/assets/128x128.png ccloud-package/usr/share/icons/hicolor/128x128/apps/ccloud.png
+          cp linux/assets/256x256.png ccloud-package/usr/share/icons/hicolor/256x256/apps/ccloud.png
+          cp linux/assets/512x512.png ccloud-package/usr/share/icons/hicolor/512x512/apps/ccloud.png
           
           # Ensure release directory exists
           mkdir -p release
@@ -250,6 +262,10 @@ jobs:
           Categories=Utility;
           EOF
           
+          # Copy icon to AppDir root with correct name
+          echo "Copying icon..."
+          cp linux/assets/256x256.png ccloud.AppDir/ccloud.png
+          
           # Make sure the executable is properly linked
           chmod +x ccloud.AppDir/usr/bin/ccloud
           
@@ -284,6 +300,7 @@ jobs:
             release/ccloud.deb
             release/ccloud.rpm
 
+
   release:
     needs: [build-windows, build-macos, build-linux]
     runs-on: ubuntu-latest
@@ -295,6 +312,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: windows-build-x64
+
+      - name: Download Windows artifacts (x86)
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-build-x86
 
       - name: Download macOS artifacts
         uses: actions/download-artifact@v4
@@ -331,6 +353,8 @@ jobs:
             CCloud-setup.exe
             CCloud-windows-x64-installer.zip
             CCloud-windows-x64-portable.zip
+            CCloud-windows-x86-installer.zip
+            CCloud-windows-x86-portable.zip
             CCloud-macos-universal.dmg
             CCloud-macos-universal.zip
             CCloud-linux.tar.gz
@@ -347,6 +371,8 @@ jobs:
             | Windows  | x64 (Installer) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-setup.exe"><img src="https://img.shields.io/badge/Windows-Installer-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows Installer"></a> |
             | Windows  | x64 (ZIP - Installer) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-windows-x64-installer.zip"><img src="https://img.shields.io/badge/Windows-x64--ZIP--Installer-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows x64 ZIP Installer"></a> |
             | Windows  | x64 (Portable ZIP) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-windows-x64-portable.zip"><img src="https://img.shields.io/badge/Windows-x64--Portable--ZIP-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows x64 Portable ZIP"></a> |
+            | Windows  | x86 (Installer) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-windows-x86-installer.zip"><img src="https://img.shields.io/badge/Windows-x86--Installer-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows x86 Installer"></a> |
+            | Windows  | x86 (Portable ZIP) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-windows-x86-portable.zip"><img src="https://img.shields.io/badge/Windows-x86--Portable--ZIP-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows x86 Portable ZIP"></a> |
             | macOS    | Universal (.dmg) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-macos-universal.dmg"><img src="https://img.shields.io/badge/macOS-Universal-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macOS Universal DMG"></a> |
             | macOS    | Universal (.zip) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-macos-universal.zip"><img src="https://img.shields.io/badge/macOS-Universal-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macOS Universal ZIP"></a> |
             | Linux    | x64 (tar.gz) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/download/${{ env.TAG_NAME }}/CCloud-linux.tar.gz"><img src="https://img.shields.io/badge/Linux-tar.gz-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux tar.gz"></a> |

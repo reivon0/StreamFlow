@@ -8,7 +8,7 @@
 PRODUCT_NAME = ccloud_gui
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.ccloudGui
+PRODUCT_BUNDLE_IDENTIFIER = com.pira.ccloudGui
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 CCloud. All rights reserved.
