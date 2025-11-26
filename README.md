@@ -86,20 +86,6 @@ If you encounter any errors when installing or running CCloud on Windows, please
 
 📥 **Download**: [Microsoft Visual C++ Redistributable](https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist)
 
-## 📥 Download Links
-
-| Platform | Architecture | Download |
-|----------|-------------|----------|
-| Windows  | x64 (Installer) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/ccloud_gui-setup.exe"><img src="https://img.shields.io/badge/Windows-Installer-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows Installer"></a> |
-| Windows  | x64 (Portable ZIP) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/CCloud-windows-x64-portable.zip"><img src="https://img.shields.io/badge/Windows-x64--Portable--ZIP-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows x64 Portable ZIP"></a> |
-| macOS    | Universal (.dmg) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/CCloud-macos-universal.dmg"><img src="https://img.shields.io/badge/macOS-Universal-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macOS Universal DMG"></a> |
-| macOS    | Universal (.zip) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/CCloud-macos-universal.zip"><img src="https://img.shields.io/badge/macOS-Universal-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macOS Universal ZIP"></a> |
-| Linux    | x64 (tar.gz) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/CCloud-linux.tar.gz"><img src="https://img.shields.io/badge/Linux-tar.gz-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux tar.gz"></a> |
-| Linux    | x64 (AppImage) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/CCloud-linux.AppImage"><img src="https://img.shields.io/badge/Linux-AppImage-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux AppImage"></a> |
-| Linux    | x64 (.deb) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/ccloud.deb"><img src="https://img.shields.io/badge/Linux-.deb-FCC624?style=for-the-badge&logo=debian&logoColor=white" alt="Linux .deb"></a> |
-| Linux    | x64 (.rpm) | <a href="https://github.com/code3-dev/CCloud-GUI/releases/latest/download/ccloud.rpm"><img src="https://img.shields.io/badge/Linux-.rpm-FCC624?style=for-the-badge&logo=redhat&logoColor=white" alt="Linux .rpm"></a> |
-| Android  | Universal APK | <a href="https://github.com/code3-dev/CCloud/releases/latest/download/CCloud-universal.apk"><img src="https://img.shields.io/badge/Android-APK-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android Universal APK"></a> |
-
 ## 💻 Development
 
 ### 🛠️ Technologies
