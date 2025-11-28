@@ -68,21 +68,28 @@ class ThemeManager with ChangeNotifier {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      colorScheme:
-          ColorScheme.fromSeed(
-            seedColor: const Color(0xFF2196F3),
-            brightness: Brightness.light,
-          ).copyWith(
-            surfaceVariant: Colors.grey[200],
-            onSurfaceVariant: Colors.grey[700],
-          ),
-      textTheme: GoogleFonts.vazirmatnTextTheme(ThemeData.light().textTheme),
-    );
-  }
-
-  ThemeData get darkTheme {
-    return ThemeData(
-      useMaterial3: true,
+      ThemeData get darkTheme {
+  return ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+    primaryColor: const Color(0xFF2c3e50), // 🔵 تغییر به سرمه‌ای
+    scaffoldBackgroundColor: Colors.black, // ⚫ تغییر به مشکی
+    appBarTheme: AppBarTheme(
+      backgroundColor: const Color(0xFF2c3e50), // 🔵 تغییر به سرمه‌ای
+      foregroundColor: Colors.white,
+      elevation: 0,
+    ),
+    colorScheme:
+        ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2c3e50), // 🔵 تغییر به سرمه‌ای
+          brightness: Brightness.dark,
+        ).copyWith(
+          surfaceVariant: const Color(0xFF2c3e50), // 🔵 تغییر به سرمه‌ای
+          onSurfaceVariant: Colors.grey[300],
+        ),
+    textTheme: GoogleFonts.vazirmatnTextTheme(ThemeData.dark().textTheme),
+  );
+}
       brightness: Brightness.dark,
       primaryColor: const Color(0xFF2196F3),
       scaffoldBackgroundColor: const Color(0xFF121212),
