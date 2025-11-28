@@ -1,4 +1,4 @@
-# CCloud GUI
+# StreamFlow
 
 <p align="center">
   <img src="assets/logo.png" alt="CCloud Logo" width="150">
